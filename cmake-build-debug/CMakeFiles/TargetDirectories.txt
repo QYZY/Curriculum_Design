@@ -1,0 +1,3 @@
+C:/Users/wangh/Desktop/Curriculum_Design/cmake-build-debug/CMakeFiles/Curriculum_Design.dir
+C:/Users/wangh/Desktop/Curriculum_Design/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/wangh/Desktop/Curriculum_Design/cmake-build-debug/CMakeFiles/rebuild_cache.dir

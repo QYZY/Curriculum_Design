@@ -15,6 +15,16 @@ extern int O_id;    // 订单id
 
 extern vector<User> v;     // 用户信息
 
+int check(string username)
+{
+    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    {
+        if (it->username == username)
+            return 1;
+    }
+    return 0;
+}
+
 void Register()     // 用户注册
 {
     system("cls");
@@ -22,6 +32,11 @@ void Register()     // 用户注册
     user.id= 'U' + to_string(U_id);
     cout << "请输入您的用户名：";
     cin >> user.username;
+    while (check(user.username))
+    {
+        cout << "该用户名已存在，请重新输入：";
+        cin >> user.username;
+    }
     cout << "请输入您的密码：";
     cin >> user.password;
     cout << "注册成功" << endl;

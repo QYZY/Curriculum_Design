@@ -85,6 +85,9 @@
 		<Unit filename="C:/Users/wangh/Desktop/Curriculum_Design/admin_function.cpp">
 			<Option target="Curriculum_Design"/>
 		</Unit>
+		<Unit filename="C:/Users/wangh/Desktop/Curriculum_Design/commodity_function.cpp">
+			<Option target="Curriculum_Design"/>
+		</Unit>
 		<Unit filename="C:/Users/wangh/Desktop/Curriculum_Design/config.h">
 			<Option target="Curriculum_Design"/>
 		</Unit>

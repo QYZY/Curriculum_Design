@@ -10,6 +10,9 @@
 using namespace std;
 
 extern int U_id;    // 用户id
+extern int C_id;    // 商品id
+extern int O_id;    // 订单id
+
 extern vector<User> v;     // 用户信息
 
 void Register()     // 用户注册
@@ -27,11 +30,12 @@ void Register()     // 用户注册
     ofs << user.id << " " << user.username << " " << user.password << endl;
     ofs.close();
     ofstream ofs1;
-    ofs1.open("../data/Config.txt", ios::out | ios::trunc);
-    U_id++;
-    ofs1 << U_id;
-    ofs1.close();
+    ofs1.open("../data/Config.txt", ios::out);
 
+    ofs1 << U_id + 1 << endl << C_id <<endl << O_id << endl;
+    ofs1.close();
+    v.push_back(user);
+    return;
 }
 
 void Login()
@@ -49,9 +53,10 @@ void Login()
         {
             cout << "登录成功" << endl;
             cout << "欢迎您，" << username << endl;
-            return ;
+            return;
         }
 
     }
     cout << "用户名或密码错误" << endl;
+    return;
 }

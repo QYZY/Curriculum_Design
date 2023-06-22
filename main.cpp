@@ -7,11 +7,7 @@ using namespace std;
 int main() {
 
     init();
-    while(true)
-    {
-        MakeChoice();
-
-    }
+    MakeChoice();
 
 
 

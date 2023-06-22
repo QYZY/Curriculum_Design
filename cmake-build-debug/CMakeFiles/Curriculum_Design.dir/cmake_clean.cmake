@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Curriculum_Design.dir/admin_function.cpp.obj"
   "CMakeFiles/Curriculum_Design.dir/admin_function.cpp.obj.d"
+  "CMakeFiles/Curriculum_Design.dir/commodity_function.cpp.obj"
+  "CMakeFiles/Curriculum_Design.dir/commodity_function.cpp.obj.d"
   "CMakeFiles/Curriculum_Design.dir/function.cpp.obj"
   "CMakeFiles/Curriculum_Design.dir/function.cpp.obj.d"
   "CMakeFiles/Curriculum_Design.dir/main.cpp.obj"

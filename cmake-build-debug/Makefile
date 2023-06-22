@@ -152,6 +152,30 @@ admin_function.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Curriculum_Design.dir\build.make CMakeFiles/Curriculum_Design.dir/admin_function.cpp.s
 .PHONY : admin_function.cpp.s
 
+commodity_function.obj: commodity_function.cpp.obj
+.PHONY : commodity_function.obj
+
+# target to build an object file
+commodity_function.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Curriculum_Design.dir\build.make CMakeFiles/Curriculum_Design.dir/commodity_function.cpp.obj
+.PHONY : commodity_function.cpp.obj
+
+commodity_function.i: commodity_function.cpp.i
+.PHONY : commodity_function.i
+
+# target to preprocess a source file
+commodity_function.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Curriculum_Design.dir\build.make CMakeFiles/Curriculum_Design.dir/commodity_function.cpp.i
+.PHONY : commodity_function.cpp.i
+
+commodity_function.s: commodity_function.cpp.s
+.PHONY : commodity_function.s
+
+# target to generate assembly for a file
+commodity_function.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Curriculum_Design.dir\build.make CMakeFiles/Curriculum_Design.dir/commodity_function.cpp.s
+.PHONY : commodity_function.cpp.s
+
 function.obj: function.cpp.obj
 .PHONY : function.obj
 
@@ -236,6 +260,9 @@ help:
 	@echo ... admin_function.obj
 	@echo ... admin_function.i
 	@echo ... admin_function.s
+	@echo ... commodity_function.obj
+	@echo ... commodity_function.i
+	@echo ... commodity_function.s
 	@echo ... function.obj
 	@echo ... function.i
 	@echo ... function.s

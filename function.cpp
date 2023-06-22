@@ -10,6 +10,8 @@ using namespace std;
 vector<User> v;     // 用户信息
 
 int U_id = 1000;    // 用户id
+int C_id = 1000;    // 商品id
+int O_id = 1000;    // 订单id
 
 void ShowMenu()     // 显示菜单
 {
@@ -27,12 +29,11 @@ void ShowMenu()     // 显示菜单
 void init()     // 初始化
 {
     ifstream ifs("../data/Config.txt");
-    if (!ifs.is_open())
-    {
+    if (!ifs.is_open()) {
         cout << "文件打开失败" << endl;
         return;
     }
-    ifs >> U_id;
+    ifs >> U_id >> C_id >> O_id;
     ifs.close();
 
     ifstream ifs1("../data/User.txt");
@@ -52,45 +53,44 @@ void init()     // 初始化
 
 void MakeChoice()       // 选择操作
 {
-    ShowMenu();
-    int option = 0;
-    cout << "请输入您的选择：";
-    cin >> option;
-   if (cin.fail())
-    {
-        cout << "输入错误，请重新输入" << endl;
-        cin.clear();
-        cin.ignore(1024, '\n');
-        system("pause");
+    while(true) {
         system("cls");
-        MakeChoice();
-    }
-    switch (option)
-    {
-        case 1:
-            cout << "用户登录" << endl;
-            Login();
-            break;
-        case 2:
-            cout << "用户注册" << endl;
-            Register();
-            break;
-        case 3:
-            cout << "管理员登录" << endl;
-            AdminLogin();
-            break;
-        case 4:
-            cout << "退出系统" << endl;
-            Exit();
-            break;
-        default:
+        ShowMenu();
+        int option = 0;
+        cout << "请输入您的选择：";
+        cin >> option;
+        if (cin.fail()) {
             cout << "输入错误，请重新输入" << endl;
-            break;
+            cin.clear();
+            cin.ignore(1024, '\n');
+            system("pause");
+            continue;
+        }
+        switch (option) {
+            case 1:
+                cout << "用户登录" << endl;
+                Login();
+                break;
+            case 2:
+                cout << "用户注册" << endl;
+                Register();
+                break;
+            case 3:
+                cout << "管理员登录" << endl;
+                AdminLogin();
+                break;
+            case 4:
+                cout << "退出系统" << endl;
+                Exit();
+                break;
+            default:
+                cout << "输入错误，请重新输入" << endl;
+                break;
+        }
+        system("pause");
     }
-    system("pause");
-    system("cls");
-}
 
+}
 
 
 void Exit()     // 退出系统
@@ -102,3 +102,4 @@ void Exit()     // 退出系统
     system("pause");
     exit(0);
 }
+

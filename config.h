@@ -14,8 +14,31 @@ struct User     // 用户信息
     string id;
     string username;
     string password;
+    string adderss;
+    string phone;
+    double balance;
 };
 
+struct Commodity     // 商品信息
+{
+    string id;
+    string name;
+    double price;
+    string added_time;
+    string seller;
+    string status;
+    string description;
+};
+
+struct Order     // 订单信息
+{
+    string id;
+    string buyer;
+    string seller;
+    string commodity;
+    double price;
+    string time;
+};
 
 
 #endif //CURRICULUM_DESIGN_CONFIG_H

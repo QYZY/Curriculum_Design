@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/wangh/Desktop/Curriculum_Design/admin_function.cpp" "CMakeFiles/Curriculum_Design.dir/admin_function.cpp.obj" "gcc" "CMakeFiles/Curriculum_Design.dir/admin_function.cpp.obj.d"
+  "C:/Users/wangh/Desktop/Curriculum_Design/commodity_function.cpp" "CMakeFiles/Curriculum_Design.dir/commodity_function.cpp.obj" "gcc" "CMakeFiles/Curriculum_Design.dir/commodity_function.cpp.obj.d"
   "C:/Users/wangh/Desktop/Curriculum_Design/function.cpp" "CMakeFiles/Curriculum_Design.dir/function.cpp.obj" "gcc" "CMakeFiles/Curriculum_Design.dir/function.cpp.obj.d"
   "C:/Users/wangh/Desktop/Curriculum_Design/main.cpp" "CMakeFiles/Curriculum_Design.dir/main.cpp.obj" "gcc" "CMakeFiles/Curriculum_Design.dir/main.cpp.obj.d"
   "C:/Users/wangh/Desktop/Curriculum_Design/user_function.cpp" "CMakeFiles/Curriculum_Design.dir/user_function.cpp.obj" "gcc" "CMakeFiles/Curriculum_Design.dir/user_function.cpp.obj.d"

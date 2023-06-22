@@ -54,5 +54,4 @@ void Login()
 
     }
     cout << "用户名或密码错误" << endl;
-    system("pause");
 }

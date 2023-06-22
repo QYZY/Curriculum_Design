@@ -56,6 +56,15 @@ void MakeChoice()       // 选择操作
     int option = 0;
     cout << "请输入您的选择：";
     cin >> option;
+   if (cin.fail())
+    {
+        cout << "输入错误，请重新输入" << endl;
+        cin.clear();
+        cin.ignore(1024, '\n');
+        system("pause");
+        system("cls");
+        MakeChoice();
+    }
     switch (option)
     {
         case 1:

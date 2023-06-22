@@ -1,7 +1,2 @@
-U10000 zy 123
-U10001 upon 123
-U10002 qwe 123
-U10003 add 123
-U10003 dawd w
-U10004 awdw awd
-U10005 qw qwer
+U10000,zy,0521,,,0
+U10002,adw,1222,,,0

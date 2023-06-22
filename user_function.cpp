@@ -30,6 +30,9 @@ void Register()     // 用户注册
     system("cls");
     User user;
     user.id= 'U' + to_string(U_id);
+    user.adderss = "";
+    user.phone = "";
+    user.balance = 0;
     cout << "请输入您的用户名：";
     cin >> user.username;
     while (check(user.username))
@@ -42,12 +45,15 @@ void Register()     // 用户注册
     cout << "注册成功" << endl;
     ofstream ofs;
     ofs.open("../data/User.txt", ios::out | ios::app);
-    ofs << user.id << " " << user.username << " " << user.password << endl;
+    ofs << user.id << "," << user.username << "," << user.password << "," << user.adderss << "," << user.phone << "," << user.balance << endl;
     ofs.close();
+    U_id++;
+
+    // 更新Config.txt
     ofstream ofs1;
     ofs1.open("../data/Config.txt", ios::out);
 
-    ofs1 << U_id + 1 << endl << C_id <<endl << O_id << endl;
+    ofs1 << U_id << endl << C_id <<endl << O_id << endl;
     ofs1.close();
     v.push_back(user);
     return;

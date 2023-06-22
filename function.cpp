@@ -2,6 +2,7 @@
 // Created by wangh on 2023/6/20.
 //
 #include <iostream>
+#include <sstream>
 #include <fstream>
 #include "menu.h"
 #include "config.h"
@@ -28,6 +29,7 @@ void ShowMenu()     // 显示菜单
 
 void init()     // 初始化
 {
+    // 读取配置文件
     ifstream ifs("../data/Config.txt");
     if (!ifs.is_open()) {
         cout << "文件打开失败" << endl;
@@ -36,6 +38,7 @@ void init()     // 初始化
     ifs >> U_id >> C_id >> O_id;
     ifs.close();
 
+    // 读取用户信息
     ifstream ifs1("../data/User.txt");
     if (!ifs1.is_open())
     {
@@ -43,11 +46,26 @@ void init()     // 初始化
         return;
     }
     User user;
-    while (ifs1 >> user.id && ifs1 >> user.username && ifs1 >> user.password)
+    string line;
+    while (getline(ifs1, line))
     {
+        stringstream ss(line);
+        string str;
+        getline(ss, str, ',');
+        user.id = str;
+        getline(ss, str, ',');
+        user.username = str;
+        getline(ss, str, ',');
+        user.password = str;
+        getline(ss, str, ',');
+        user.adderss = str;
+        getline(ss, str, ',');
+        user.phone = str;
+        getline(ss, str, ',');
+        user.balance = stoi(str);
         v.push_back(user);
     }
-    ifs1.close();
+
 }
 
 

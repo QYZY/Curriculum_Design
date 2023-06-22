@@ -111,10 +111,10 @@ void ShowAllUser()
 {
     system("cls");
     cout << "***** 所有用户信息 *****" << endl;
-    cout << "用户ID\t\t用户名\t\t密码" << endl;
+    cout << "用户ID\t\t用户名\t\t地址\t\t电话" << endl;
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
-        cout << it->id << "\t\t" << it->username << "\t\t" << it->password << endl;
+        cout << it->id << "\t\t" << it->username << "\t\t" << it->adderss << "\t\t" << it->phone  << endl;
     }
     system("pause");
     return;
@@ -137,7 +137,8 @@ void DeleteUser()
     ofstream ofs("../data/User.txt");
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
-        ofs << it->id << " " << it->username << " " << it->password << endl;
+        ofs << it->id << "," << it->username << "," << it->password << "," << it->adderss << "," << it->phone << "," << it->balance << endl;
+
     }
     ofs.close();
     cout << "删除成功" << endl;

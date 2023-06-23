@@ -10,7 +10,9 @@
 #include "config.h"
 using namespace std;
 
+extern vector<User> v;     // 用户信息
 extern vector<Commodity> v1;   // 商品信息
+extern vector<Order> v2;   // 订单信息
 
 extern int U_id;    // 用户id
 extern int C_id;    // 商品id
@@ -29,7 +31,7 @@ string GetcurTime()    // 获取当前时间
     return curTime;
 }
 
-void PostCommodity(string username)
+void PostCommodity(string username)         // 发布商品
 {
     system("cls");
     Commodity commodity;
@@ -45,21 +47,15 @@ void PostCommodity(string username)
     cin >> commodity.description;
     commodity.added_time = GetcurTime();
     cout << "发布成功" << endl;
-    ofstream ofs;
-    ofs.open("../data/Commodity.txt", ios::out | ios::app);
-    ofs << commodity.id << "," << commodity.name << "," << commodity.price << "," << commodity.added_time << "," << commodity.seller << "," << commodity.buyer << "," << commodity.status << "," << commodity.description << endl;
-    ofs.close();
+    UpdateConfig();
     C_id++;
-    ofstream ofs1;
-    ofs1.open("../data/Config.txt", ios::out);
-    ofs1 << U_id << endl << C_id <<endl << O_id << endl;
-    ofs1.close();
     v1.push_back(commodity);
+    UpdateCommodity();
     system("pause");
     return;
 }
 
-void ShowMyCommodity(string username)
+void ShowMyCommodity(string username)       // 查看我的商品
 {
     system("cls");
     cout << left << setw(10) << "商品id" << setw(10) << "商品名称" << setw(10) << "商品价格" << setw(20) << "发布时间"  << setw(10) << "商品状态" << endl;
@@ -74,7 +70,7 @@ void ShowMyCommodity(string username)
     return;
 }
 
-void ModifyCommodity(string username)
+void ModifyCommodity(string username)       // 修改商品信息
 {
     system("cls");
     string id;
@@ -97,13 +93,7 @@ void ModifyCommodity(string username)
             cout << "请输入新的商品描述：";
             cin >> it->description;
             cout << "修改成功" << endl;
-            ofstream ofs;
-            ofs.open("../data/Commodity.txt", ios::out);
-            for (vector<Commodity>::iterator it1 = v1.begin(); it1 != v1.end(); it1++)
-            {
-                ofs << it1->id << "," << it1->name << "," << it1->price << "," << it1->added_time << "," << it1->seller << "," << it1->buyer << "," << it1->status << "," << it1->description << endl;
-            }
-            ofs.close();
+            UpdateCommodity();
             system("pause");
             return;
         }
@@ -114,7 +104,7 @@ void ModifyCommodity(string username)
 
 }
 
-void RemoveCommodity(string username)
+void RemoveCommodity(string username)       // 下架商品
 {
 system("cls");
     string id;
@@ -126,13 +116,7 @@ system("cls");
         {
             it->status = "已下架";
             cout << "下架成功" << endl;
-            ofstream ofs;
-            ofs.open("../data/Commodity.txt", ios::out);
-            for (vector<Commodity>::iterator it1 = v1.begin(); it1 != v1.end(); it1++)
-            {
-                ofs << it1->id << "," << it1->name << "," << it1->price << "," << it1->added_time << "," << it1->seller << "," << it1->buyer << "," << it1->status << "," << it1->description << endl;
-            }
-            ofs.close();
+            UpdateCommodity();
             system("pause");
             return;
         }
@@ -141,4 +125,74 @@ system("cls");
     system("pause");
     return;
 
+}
+
+void ShowBuyCommodity(string username)      // 查看可购买商品
+{
+    system("cls");
+    cout << left << setw(10) << "商品id" << setw(10) << "商品名称" << setw(10) << "商品价格" << setw(20) << "发布时间"  << setw(10) << "商品状态" << endl;
+    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    {
+        if (it->status == "在售" && it->seller != username)
+        {
+            cout << left << setw(10) << it->id << setw(10) << it->name << setw(10) << it->price << setw(20) << it->added_time << setw(10) << it->status << endl;
+        }
+    }
+    system("pause");
+    return;
+}
+
+void BuyCommodity(string username)      // 购买商品
+{
+    system("cls");
+    string id;
+    cout << "请输入要购买的商品id：";
+    cin >> id;
+    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    {
+        if (it->id == id && it->status == "在售" && it->seller != username)
+        {
+            // 支付
+            for (vector<User>::iterator it1 = v.begin(); it1 != v.end(); it1++)
+            {
+                if (it1->username == username)
+                {
+                    if (it1->balance < it->price)
+                    {
+                        cout << "余额不足，购买失败" << endl;
+                        system("pause");
+                        return;
+                    }
+                    else
+                    {
+                        it1->balance -= it->price;
+
+                        UpdateUser();
+                        Order order;
+                        order.order_id = 'O' + to_string(O_id);
+                        order.commodity_id = it->id;
+                        order.price = it->price;
+                        order.seller_id= it->seller;
+                        order.buyer_id = it1->id;
+                        order.order_time = GetcurTime();
+
+                        O_id++;
+                        v2.push_back(order);
+                        UpdateOrder();
+                        break;
+                    }
+                }
+            }
+
+            it->buyer = username;
+            it->status = "已售出";
+            cout << "购买成功" << endl;
+            UpdateCommodity();
+            system("pause");
+            return;
+        }
+    }
+    cout << "商品不存在或已下架" << endl;
+    system("pause");
+    return;
 }

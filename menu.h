@@ -26,16 +26,27 @@ void ModifyUser();
 
 
 // user menu function
-void UserMenu(std::string username);
-void SellerMenu(std::string username);
-void BuyerMenu(std::string username);
-void PersonalInfo(std::string username);
+void UserMenu(std::string id);
+void SellerMenu(std::string id);
+void BuyerMenu(std::string id);
+void PersonalInfo(std::string id);
 
 // commodity menu function
 std::string GetcurTime();
-void PostCommodity(std::string username);
-void ShowMyCommodity(std::string username);
-void ModifyCommodity(std::string username);
-void RemoveCommodity(std::string username);
+void PostCommodity(std::string id);
+void ShowMyCommodity(std::string id);
+void ModifyCommodity(std::string id);
+void RemoveCommodity(std::string id);
+void ShowBuyCommodity(std::string id);
+void BuyCommodity(std::string id);
+
+
+// simplify function
+void UpdateConfig();
+void UpdateUser();
+void UpdateOrder();
+void UpdateCommodity();
+
+
 
 #endif //CURRICULUM_DESIGN_MENU_H

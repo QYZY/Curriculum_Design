@@ -14,8 +14,12 @@ extern int C_id;    // 商品id
 extern int O_id;    // 订单id
 
 extern vector<User> v;     // 用户信息
+extern vector<Commodity> v1;   // 商品信息
+extern vector<Order> v2;   // 订单信息
 
-int check(string username)
+
+
+int check(string username)      // 检查用户名是否存在
 {
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
@@ -43,23 +47,19 @@ void Register()     // 用户注册
     cout << "请输入您的密码：";
     cin >> user.password;
     cout << "注册成功" << endl;
-    ofstream ofs;
-    ofs.open("../data/User.txt", ios::out | ios::app);
-    ofs << user.id << "," << user.username << "," << user.password << "," << user.adderss << "," << user.phone << "," << user.balance << endl;
-    ofs.close();
-    U_id++;
+
+    // 更新User.txt
+    v.push_back(user);
+    UpdateUser();
+
 
     // 更新Config.txt
-    ofstream ofs1;
-    ofs1.open("../data/Config.txt", ios::out);
-
-    ofs1 << U_id << endl << C_id <<endl << O_id << endl;
-    ofs1.close();
-    v.push_back(user);
+    UpdateConfig();
+    U_id++;
     return;
 }
 
-void Login()
+void Login()        // 用户登录
 {
     system("cls");
     string username;
@@ -85,7 +85,7 @@ void Login()
     return;
 }
 
-void UserMenu(string username)
+void UserMenu(string username)      // 用户菜单
 {
     while(true) {
         system("cls");
@@ -97,6 +97,7 @@ void UserMenu(string username)
         switch (option) {
             case 1:
                 cout << "我是买家" << endl;
+                BuyerMenu(username);
                 break;
             case 2:
                 cout << "我是卖家" << endl;
@@ -118,7 +119,7 @@ void UserMenu(string username)
 
 }
 
-void SellerMenu(string username)
+void SellerMenu(string username)        // 卖家菜单
 {
     while(true) {
         system("cls");
@@ -148,6 +149,41 @@ void SellerMenu(string username)
                 cout << "查看历史订单" << endl;
                 break;
             case 6:
+                cout << "返回" << endl;
+                return;
+            default:
+                cout << "输入错误" << endl;
+                break;
+        }
+    }
+}
+
+void BuyerMenu(string username)     // 买家菜单
+{
+    while(true)
+    {
+        system("cls");
+        cout << "==============================================================================" << endl;
+        cout << "1.查看商品列表 2.购买商品 3.搜索商品 4.查看历史订单 5.返回" << endl;
+        cout << "==============================================================================" << endl;
+        int option;
+        cin >> option;
+        switch (option) {
+            case 1:
+                cout << "查看商品列表" << endl;
+                ShowBuyCommodity(username);
+                break;
+            case 2:
+                cout << "购买商品" << endl;
+                BuyCommodity(username);
+                break;
+            case 3:
+                cout << "搜索商品" << endl;
+                break;
+            case 4:
+                cout << "查看历史订单" << endl;
+                break;
+            case 5:
                 cout << "返回" << endl;
                 return;
             default:

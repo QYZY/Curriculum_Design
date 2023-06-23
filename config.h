@@ -33,12 +33,12 @@ struct Commodity     // 商品信息
 
 struct Order     // 订单信息
 {
-    string id;
-    string buyer;
-    string seller;
-    string commodity;
+    string order_id;
+    string commodity_id;
     double price;
-    string time;
+    string seller_id;
+    string buyer_id;
+    string order_time;
 };
 
 

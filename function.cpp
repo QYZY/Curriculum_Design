@@ -103,7 +103,34 @@ void init()     // 初始化
     }
     ifs2.close();
 
-
+    // 读取订单信息
+    ifstream ifs3("../data/Order.txt");
+    if (!ifs3.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return;
+    }
+    Order order;
+    string line2;
+    while (getline(ifs3, line2))
+    {
+        stringstream ss(line2);
+        string str;
+        getline(ss, str, ',');
+        order.order_id = str;
+        getline(ss, str, ',');
+        order.commodity_id = str;
+        getline(ss, str, ',');
+        order.price = stod(str);
+        getline(ss, str, ',');
+        order.seller_id = str;
+        getline(ss, str, ',');
+        order.buyer_id = str;
+        getline(ss, str, ',');
+        order.order_time = str;
+        v2.push_back(order);
+    }
+    ifs3.close();
 }
 
 
@@ -159,3 +186,58 @@ void Exit()     // 退出系统
     exit(0);
 }
 
+void UpdateUser()       // 更新usr.txt
+{
+    ofstream ofs("../data/User.txt", ios::out);
+    if (!ofs.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return;
+    }
+    for (int i = 0; i < v.size(); ++i)
+    {
+        ofs << v[i].id << "," << v[i].username << "," << v[i].password << "," << v[i].adderss << "," << v[i].phone << "," << v[i].balance << endl;
+    }
+    ofs.close();
+}
+
+void UpdateConfig()     // 更新config.txt
+{
+    ofstream ofs("../data/Config.txt", ios::out);
+    if (!ofs.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return;
+    }
+    ofs << U_id << endl << C_id << endl << O_id << endl;
+    ofs.close();
+}
+
+void UpdateCommodity()      // 更新commodity.txt
+{
+    ofstream ofs("../data/Commodity.txt", ios::out);
+    if (!ofs.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return;
+    }
+    for (int i = 0; i < v1.size(); ++i)
+    {
+        ofs << v1[i].id << "," << v1[i].name << "," << v1[i].price << "," << v1[i].added_time << "," << v1[i].seller << "," << v1[i].buyer << "," << v1[i].status << "," << v1[i].description << endl;
+    }
+    ofs.close();
+}
+void UpdateOrder()
+{
+    ofstream ofs("../data/Order.txt", ios::out);
+    if (!ofs.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return;
+    }
+    for (int i = 0; i < v2.size(); ++i)
+    {
+        ofs << v2[i].order_id << "," << v2[i].commodity_id << "," << v2[i].price <<  v2[i].seller_id << "," << v2[i].buyer_id << "," << v2[i].order_time << endl;
+    }
+    ofs.close();
+}

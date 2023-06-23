@@ -26,6 +26,7 @@ struct Commodity     // 商品信息
     double price;
     string added_time;
     string seller;
+    string buyer;
     string status;
     string description;
 };

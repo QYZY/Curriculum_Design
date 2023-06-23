@@ -127,13 +127,20 @@ void DeleteUser()
     cout << "请输入要删除的用户ID：";
     string del_id;
     cin >> del_id;
+    int flag = 0;
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
+
         if (it->id == del_id)
         {
+            flag = 1;
+            cout << "删除成功" << endl;
             v.erase(it);
         }
     }
+    if (flag == 0)
+        cout << "用户不存在" << endl;
+
     ofstream ofs("../data/User.txt");
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
@@ -141,7 +148,7 @@ void DeleteUser()
 
     }
     ofs.close();
-    cout << "删除成功" << endl;
+
     system("pause");
     return;
 }

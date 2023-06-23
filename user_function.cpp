@@ -68,16 +68,91 @@ void Login()
     cin >> username;
     cout << "请输入您的密码：";
     cin >> passwd;
+    int flag = 0;
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
         if (it->username == username && it->password == passwd)
         {
+            flag = 1;
             cout << "登录成功" << endl;
             cout << "欢迎您，" << username << endl;
+            UserMenu(username);
             return;
         }
 
     }
     cout << "用户名或密码错误" << endl;
     return;
+}
+
+void UserMenu(string username)
+{
+    while(true) {
+        system("cls");
+        cout << "======================================================" << endl;
+        cout << "1.我是买家  2.我是卖家  3.个人信息  4.退出登录" << endl;
+        cout << "======================================================" << endl;
+        int option;
+        cin >> option;
+        switch (option) {
+            case 1:
+                cout << "我是买家" << endl;
+                break;
+            case 2:
+                cout << "我是卖家" << endl;
+                SellerMenu(username);
+                break;
+            case 3:
+                cout << "个人信息" << endl;
+                break;
+            case 4:
+                cout << "退出登录" << endl;
+                return;
+            default:
+                cout << "输入错误" << endl;
+                break;
+        }
+        system("pause");
+    }
+
+
+}
+
+void SellerMenu(string username)
+{
+    while(true) {
+        system("cls");
+        cout << "==============================================================================" << endl;
+        cout << "1.商品上架  2.查看发布商品  3.修改商品信息  4.商品下架  5.查看历史订单  6. 返回" << endl;
+        cout << "==============================================================================" << endl;
+        int option;
+        cin >> option;
+        switch (option) {
+            case 1:
+                cout << "商品上架" << endl;
+                PostCommodity(username);
+                break;
+            case 2:
+                cout << "查看发布商品" << endl;
+                ShowMyCommodity(username);
+                break;
+            case 3:
+                cout << "修改商品信息" << endl;
+                ModifyCommodity(username);
+                break;
+            case 4:
+                cout << "商品下架" << endl;
+                RemoveCommodity(username);
+                break;
+            case 5:
+                cout << "查看历史订单" << endl;
+                break;
+            case 6:
+                cout << "返回" << endl;
+                return;
+            default:
+                cout << "输入错误" << endl;
+                break;
+        }
+    }
 }

@@ -9,6 +9,9 @@
 using namespace std;
 
 vector<User> v;     // 用户信息
+vector<Commodity> v1;   // 商品信息
+vector<Order> v2;   // 订单信息
+
 
 int U_id = 1000;    // 用户id
 int C_id = 1000;    // 商品id
@@ -65,6 +68,41 @@ void init()     // 初始化
         user.balance = stoi(str);
         v.push_back(user);
     }
+    ifs1.close();
+
+    // 读取商品信息
+    ifstream ifs2("../data/Commodity.txt");
+    if (!ifs2.is_open())
+    {
+        cout << "文件打开失败" << endl;
+        return;
+    }
+    Commodity commodity;
+    string line1;
+    while (getline(ifs2, line1))
+    {
+        stringstream ss(line1);
+        string str;
+        getline(ss, str, ',');
+        commodity.id = str;
+        getline(ss, str, ',');
+        commodity.name = str;
+        getline(ss, str, ',');
+        commodity.price = stod(str);
+        getline(ss, str, ',');
+        commodity.added_time = str;
+        getline(ss, str, ',');
+        commodity.seller = str;
+        getline(ss, str, ',');
+        commodity.buyer = str;
+        getline(ss, str, ',');
+        commodity.status = str;
+        getline(ss, str, ',');
+        commodity.description = str;
+        v1.push_back(commodity);
+    }
+    ifs2.close();
+
 
 }
 

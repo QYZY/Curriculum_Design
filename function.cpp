@@ -123,9 +123,9 @@ void init()     // ³õÊ¼»¯
         getline(ss, str, ',');
         order.price = stod(str);
         getline(ss, str, ',');
-        order.seller_id = str;
+        order.seller = str;
         getline(ss, str, ',');
-        order.buyer_id = str;
+        order.buyer = str;
         getline(ss, str, ',');
         order.order_time = str;
         v2.push_back(order);
@@ -237,7 +237,7 @@ void UpdateOrder()
     }
     for (int i = 0; i < v2.size(); ++i)
     {
-        ofs << v2[i].order_id << "," << v2[i].commodity_id << "," << v2[i].price <<  v2[i].seller_id << "," << v2[i].buyer_id << "," << v2[i].order_time << endl;
+        ofs << v2[i].order_id << "," << v2[i].commodity_id << "," << v2[i].price <<  "," << v2[i].seller << "," << v2[i].buyer << "," << v2[i].order_time << endl;
     }
     ofs.close();
 }

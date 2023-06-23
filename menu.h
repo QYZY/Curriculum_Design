@@ -26,19 +26,19 @@ void ModifyUser();
 
 
 // user menu function
-void UserMenu(std::string id);
-void SellerMenu(std::string id);
-void BuyerMenu(std::string id);
-void PersonalInfo(std::string id);
+void UserMenu(std::string username);
+void SellerMenu(std::string user_id);
+void BuyerMenu(std::string user_id);
+void PersonalInfo(std::string user_id);
 
 // commodity menu function
 std::string GetcurTime();
-void PostCommodity(std::string id);
-void ShowMyCommodity(std::string id);
-void ModifyCommodity(std::string id);
-void RemoveCommodity(std::string id);
-void ShowBuyCommodity(std::string id);
-void BuyCommodity(std::string id);
+void PostCommodity(std::string user_id);
+void ShowMyCommodity(std::string user_id);
+void ModifyCommodity(std::string user_id);
+void RemoveCommodity(std::string user_id);
+void ShowBuyCommodity(std::string user_id);
+void BuyCommodity(std::string user_id);
 
 
 // simplify function

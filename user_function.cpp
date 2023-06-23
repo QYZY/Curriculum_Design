@@ -54,8 +54,8 @@ void Register()     // 用户注册
 
 
     // 更新Config.txt
-    UpdateConfig();
     U_id++;
+    UpdateConfig();
     return;
 }
 
@@ -87,6 +87,15 @@ void Login()        // 用户登录
 
 void UserMenu(string username)      // 用户菜单
 {
+    string user_id;
+    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    {
+        if (it->username == username)
+        {
+            user_id = it->id;
+            break;
+        }
+    }
     while(true) {
         system("cls");
         cout << "======================================================" << endl;
@@ -97,11 +106,11 @@ void UserMenu(string username)      // 用户菜单
         switch (option) {
             case 1:
                 cout << "我是买家" << endl;
-                BuyerMenu(username);
+                BuyerMenu(user_id);
                 break;
             case 2:
                 cout << "我是卖家" << endl;
-                SellerMenu(username);
+                SellerMenu(user_id);
                 break;
             case 3:
                 cout << "个人信息" << endl;
@@ -119,7 +128,7 @@ void UserMenu(string username)      // 用户菜单
 
 }
 
-void SellerMenu(string username)        // 卖家菜单
+void SellerMenu(string user_id)        // 卖家菜单
 {
     while(true) {
         system("cls");
@@ -131,19 +140,19 @@ void SellerMenu(string username)        // 卖家菜单
         switch (option) {
             case 1:
                 cout << "商品上架" << endl;
-                PostCommodity(username);
+                PostCommodity(user_id);
                 break;
             case 2:
                 cout << "查看发布商品" << endl;
-                ShowMyCommodity(username);
+                ShowMyCommodity(user_id);
                 break;
             case 3:
                 cout << "修改商品信息" << endl;
-                ModifyCommodity(username);
+                ModifyCommodity(user_id);
                 break;
             case 4:
                 cout << "商品下架" << endl;
-                RemoveCommodity(username);
+                RemoveCommodity(user_id);
                 break;
             case 5:
                 cout << "查看历史订单" << endl;
@@ -158,7 +167,7 @@ void SellerMenu(string username)        // 卖家菜单
     }
 }
 
-void BuyerMenu(string username)     // 买家菜单
+void BuyerMenu(string user_id)     // 买家菜单
 {
     while(true)
     {
@@ -171,11 +180,11 @@ void BuyerMenu(string username)     // 买家菜单
         switch (option) {
             case 1:
                 cout << "查看商品列表" << endl;
-                ShowBuyCommodity(username);
+                ShowBuyCommodity(user_id);
                 break;
             case 2:
                 cout << "购买商品" << endl;
-                BuyCommodity(username);
+                BuyCommodity(user_id);
                 break;
             case 3:
                 cout << "搜索商品" << endl;

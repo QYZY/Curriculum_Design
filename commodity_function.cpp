@@ -31,12 +31,12 @@ string GetcurTime()    // 获取当前时间
     return curTime;
 }
 
-void PostCommodity(string username)         // 发布商品
+void PostCommodity(string user_id)         // 发布商品
 {
     system("cls");
     Commodity commodity;
     commodity.id = 'C' + to_string(C_id);
-    commodity.seller = username;
+    commodity.seller = user_id;
     commodity.buyer = "";
     commodity.status = "在售";
     cout << "请输入商品名称：";
@@ -47,21 +47,22 @@ void PostCommodity(string username)         // 发布商品
     cin >> commodity.description;
     commodity.added_time = GetcurTime();
     cout << "发布成功" << endl;
-    UpdateConfig();
+
     C_id++;
+    UpdateConfig();
     v1.push_back(commodity);
     UpdateCommodity();
     system("pause");
     return;
 }
 
-void ShowMyCommodity(string username)       // 查看我的商品
+void ShowMyCommodity(string user_id)       // 查看我的商品
 {
     system("cls");
     cout << left << setw(10) << "商品id" << setw(10) << "商品名称" << setw(10) << "商品价格" << setw(20) << "发布时间"  << setw(10) << "商品状态" << endl;
     for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
     {
-        if (it->seller == username)
+        if (it->seller == user_id)
         {
             cout << left << setw(10) << it->id << setw(10) << it->name << setw(10) << it->price << setw(20) << it->added_time << setw(10) << it->status << endl;
         }
@@ -70,7 +71,7 @@ void ShowMyCommodity(string username)       // 查看我的商品
     return;
 }
 
-void ModifyCommodity(string username)       // 修改商品信息
+void ModifyCommodity(string user_id)       // 修改商品信息
 {
     system("cls");
     string id;
@@ -78,7 +79,7 @@ void ModifyCommodity(string username)       // 修改商品信息
     cin >> id;
     for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
     {
-        if (it->id == id && it->seller == username)
+        if (it->id == id && it->seller == user_id)
         {
             cout << "**************商品信息**************" << endl;
             cout << "商品id：" << it->id << endl;
@@ -104,7 +105,7 @@ void ModifyCommodity(string username)       // 修改商品信息
 
 }
 
-void RemoveCommodity(string username)       // 下架商品
+void RemoveCommodity(string user_id)       // 下架商品
 {
 system("cls");
     string id;
@@ -112,7 +113,7 @@ system("cls");
     cin >> id;
     for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
     {
-        if (it->id == id && it->seller == username)
+        if (it->id == id && it->seller == user_id)
         {
             it->status = "已下架";
             cout << "下架成功" << endl;
@@ -127,13 +128,13 @@ system("cls");
 
 }
 
-void ShowBuyCommodity(string username)      // 查看可购买商品
+void ShowBuyCommodity(string user_id)      // 查看可购买商品
 {
     system("cls");
     cout << left << setw(10) << "商品id" << setw(10) << "商品名称" << setw(10) << "商品价格" << setw(20) << "发布时间"  << setw(10) << "商品状态" << endl;
     for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
     {
-        if (it->status == "在售" && it->seller != username)
+        if (it->status == "在售" && it->seller != user_id)
         {
             cout << left << setw(10) << it->id << setw(10) << it->name << setw(10) << it->price << setw(20) << it->added_time << setw(10) << it->status << endl;
         }
@@ -142,7 +143,7 @@ void ShowBuyCommodity(string username)      // 查看可购买商品
     return;
 }
 
-void BuyCommodity(string username)      // 购买商品
+void BuyCommodity(string user_id)      // 购买商品
 {
     system("cls");
     string id;
@@ -150,12 +151,12 @@ void BuyCommodity(string username)      // 购买商品
     cin >> id;
     for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
     {
-        if (it->id == id && it->status == "在售" && it->seller != username)
+        if (it->id == id && it->status == "在售" && it->seller != user_id)
         {
             // 支付
             for (vector<User>::iterator it1 = v.begin(); it1 != v.end(); it1++)
             {
-                if (it1->username == username)
+                if (it1->id == user_id)
                 {
                     if (it1->balance < it->price)
                     {
@@ -165,26 +166,36 @@ void BuyCommodity(string username)      // 购买商品
                     }
                     else
                     {
-                        it1->balance -= it->price;
-
+                        for(vector<User>::iterator it2 = v.begin(); it2 != v.end(); it2++)
+                        {
+                            if (it2->id == it->seller)
+                            {
+                                it2->balance += it->price;
+                                it1->balance -= it->price;
+                                break;
+                            }
+                        }
                         UpdateUser();
+
                         Order order;
                         order.order_id = 'O' + to_string(O_id);
                         order.commodity_id = it->id;
                         order.price = it->price;
-                        order.seller_id= it->seller;
-                        order.buyer_id = it1->id;
+                        order.seller= it->seller;
+                        order.buyer = it1->id;
                         order.order_time = GetcurTime();
 
-                        O_id++;
+
                         v2.push_back(order);
                         UpdateOrder();
+                        O_id++;
+                        UpdateConfig();
                         break;
                     }
                 }
             }
 
-            it->buyer = username;
+            it->buyer = user_id;
             it->status = "已售出";
             cout << "购买成功" << endl;
             UpdateCommodity();

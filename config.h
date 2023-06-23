@@ -36,8 +36,8 @@ struct Order     // 订单信息
     string order_id;
     string commodity_id;
     double price;
-    string seller_id;
-    string buyer_id;
+    string seller;
+    string buyer;
     string order_time;
 };
 

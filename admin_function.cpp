@@ -19,6 +19,7 @@ extern vector<User> v;     // 用户信息
 extern vector<Commodity> v1;   // 商品信息
 extern vector<Order> v2;   // 订单信息
 
+
 void AdminLogin() {
     system("cls");
     ifstream ifs("../data/AdminAccount.txt");
@@ -103,6 +104,7 @@ void AdminMenu()
                 break;
             case 6:
                 cout << "下架商品" << endl;
+                DeleteCommodity();
                 break;
             case 7:
                 cout << "退出登录" << endl;
@@ -117,7 +119,7 @@ void AdminMenu()
 
 }
 
-void ShowAllUser()
+void ShowAllUser()      // 显示所有用户信息
 {
     system("cls");
     cout << "==================================================================================================" << endl;
@@ -197,4 +199,25 @@ void ShowAllCommodity()
     }
     cout << "=======================================================================================================" << endl;
     return;
+}
+
+void DeleteCommodity()       // 下架商品
+{
+    system("cls");
+    string id;
+    cout << "请输入要下架的商品id：";
+    cin >> id;
+    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    {
+        if (it->id == id)
+        {
+            it->status = "已下架";
+            cout << "下架成功" << endl;
+            UpdateCommodity();
+            return;
+        }
+    }
+    cout << "商品不存在或您无权操作" << endl;
+    return;
+
 }

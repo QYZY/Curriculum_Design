@@ -23,6 +23,7 @@ void ShowAllUser();
 void DeleteUser();
 void ShowAllCommodity();
 void ShowAllOrder();
+void DeleteCommodity();
 
 
 

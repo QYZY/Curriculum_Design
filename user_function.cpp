@@ -157,6 +157,7 @@ void SellerMenu(string user_id)        // 卖家菜单
                 break;
             case 5:
                 cout << "查看历史订单" << endl;
+                ShowMySellOrder(user_id);
                 break;
             case 6:
                 cout << "返回" << endl;
@@ -192,6 +193,7 @@ void BuyerMenu(string user_id)     // 买家菜单
                 break;
             case 4:
                 cout << "查看历史订单" << endl;
+                ShowMyBuyOrder(user_id);
                 break;
             case 5:
                 cout << "返回" << endl;
@@ -361,7 +363,7 @@ void ModifyPhone(string user_id)        // 修改电话
     }
 }
 
-void Recharge(string user_id)
+void Recharge(string user_id)       // 充值
 {
     system("cls");
     int money;

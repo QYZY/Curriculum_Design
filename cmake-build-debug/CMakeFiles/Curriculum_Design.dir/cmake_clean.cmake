@@ -7,6 +7,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Curriculum_Design.dir/function.cpp.obj.d"
   "CMakeFiles/Curriculum_Design.dir/main.cpp.obj"
   "CMakeFiles/Curriculum_Design.dir/main.cpp.obj.d"
+  "CMakeFiles/Curriculum_Design.dir/order_function.cpp.obj"
+  "CMakeFiles/Curriculum_Design.dir/order_function.cpp.obj.d"
   "CMakeFiles/Curriculum_Design.dir/user_function.cpp.obj"
   "CMakeFiles/Curriculum_Design.dir/user_function.cpp.obj.d"
   "Curriculum_Design.exe"

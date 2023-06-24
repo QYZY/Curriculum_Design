@@ -100,6 +100,9 @@
 		<Unit filename="C:/Users/wangh/Desktop/Curriculum_Design/menu.h">
 			<Option target="Curriculum_Design"/>
 		</Unit>
+		<Unit filename="C:/Users/wangh/Desktop/Curriculum_Design/order_function.cpp">
+			<Option target="Curriculum_Design"/>
+		</Unit>
 		<Unit filename="C:/Users/wangh/Desktop/Curriculum_Design/user_function.cpp">
 			<Option target="Curriculum_Design"/>
 		</Unit>

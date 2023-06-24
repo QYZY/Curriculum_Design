@@ -21,6 +21,8 @@ void Exit();
 void AdminMenu();
 void ShowAllUser();
 void DeleteUser();
+void ShowAllCommodity();
+void ShowAllOrder();
 
 
 
@@ -46,6 +48,10 @@ void ModifyCommodity(std::string user_id);
 void RemoveCommodity(std::string user_id);
 void ShowBuyCommodity(std::string user_id);
 void BuyCommodity(std::string user_id);
+
+// order menu function
+void ShowMyBuyOrder(std::string user_id);
+void ShowMySellOrder(std::string user_id);
 
 
 // simplify function

@@ -4,12 +4,20 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <vector>
+#include <iomanip>
 #include "menu.h"
 #include "config.h"
 using namespace std;
 
+extern int U_id;    // 用户id
+extern int C_id;    // 商品id
+extern int O_id;    // 订单id
 
 extern vector<User> v;     // 用户信息
+extern vector<Commodity> v1;   // 商品信息
+extern vector<Order> v2;   // 订单信息
 
 void AdminLogin() {
     system("cls");
@@ -76,12 +84,14 @@ void AdminMenu()
         switch (option) {
             case 1:
                 cout << "查看所有商品" << endl;
+                ShowAllCommodity();
                 break;
             case 2:
                 cout << "搜索商品" << endl;
                 break;
             case 3:
                 cout << "查看所有订单" << endl;
+                ShowAllOrder();
                 break;
             case 4:
                 cout << "查看所有用户" << endl;
@@ -99,24 +109,25 @@ void AdminMenu()
                 return;
             default:
                 cout << "输入错误，请重新输入" << endl;
-                system("pause");
-                system("cls");
                 break;
         }
+        system("pause");
     }
+
 
 }
 
 void ShowAllUser()
 {
     system("cls");
-    cout << "***** 所有用户信息 *****" << endl;
-    cout << "用户ID\t\t用户名\t\t地址\t\t电话" << endl;
+    cout << "==================================================================================================" << endl;
+    cout << "==                                        所有用户信息                                          ==" << endl;
+    cout << "==================================================================================================" << endl;
+    cout << left << setw(15) << "用户ID" << setw(15) << "用户名" << setw(15) << "密码" <<setw(20) << "用户地址" << setw(20) << "用户电话" << setw(15) << "余额" << endl;
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
-        cout << it->id << "\t\t" << it->username << "\t\t" << it->adderss << "\t\t" << it->phone  << endl;
+        cout << left << setw(15) << it->id << setw(15) << it->username << setw(15) << it->password << setw(20) << it->adderss << setw(20) << it->phone << setw(15) << it->balance << endl;
     }
-    system("pause");
     return;
 }
 
@@ -149,6 +160,41 @@ void DeleteUser()
     }
     ofs.close();
 
-    system("pause");
+    return;
+}
+
+void ShowAllOrder()
+{
+    system("cls");
+    cout << "=======================================================================================================" << endl;
+    cout << "==                                             所有订单                                              ==" << endl;
+    cout << "=======================================================================================================" << endl;
+    cout << left << setw(20) << "订单ID" << setw(20) << "商品ID" << setw(20) << "商品名称" << setw(20) << "商品价格" << setw(10) << "买家ID" << setw(10) << "卖家ID" << setw(20) << "订单时间" << endl;
+    for (vector<Order>::iterator it = v2.begin(); it != v2.end(); it++)
+    {
+        for (vector<Commodity>::iterator it1 = v1.begin(); it1 != v1.end(); it1++)
+        {
+            if (it->commodity_id == it1->id)
+            {
+                cout << left << setw(20) << it->order_id << setw(20) << it->commodity_id << setw(20) << it1->name << setw(20) << it->price << setw(10) << it->buyer << setw(10) << it->seller << setw(20) << it->order_time << endl;
+            }
+        }
+    }
+    cout << "=======================================================================================================" << endl;
+    return;
+}
+
+void ShowAllCommodity()
+{
+    system("cls");
+    cout << "=======================================================================================================" << endl;
+    cout << "==                                             所有商品                                              ==" << endl;
+    cout << "=======================================================================================================" << endl;
+    cout << left << setw(20) << "商品id" << setw(20) << "商品名称" << setw(20) << "商品价格" << setw(30) << "发布时间"  << setw(20) << "商品状态" << endl;
+    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    {
+        cout << left << setw(20) << it->id << setw(20) << it->name << setw(20) << it->price << setw(30) << it->added_time << setw(20) << it->status << endl;
+    }
+    cout << "=======================================================================================================" << endl;
     return;
 }

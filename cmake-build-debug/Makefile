@@ -224,6 +224,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Curriculum_Design.dir\build.make CMakeFiles/Curriculum_Design.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+order_function.obj: order_function.cpp.obj
+.PHONY : order_function.obj
+
+# target to build an object file
+order_function.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Curriculum_Design.dir\build.make CMakeFiles/Curriculum_Design.dir/order_function.cpp.obj
+.PHONY : order_function.cpp.obj
+
+order_function.i: order_function.cpp.i
+.PHONY : order_function.i
+
+# target to preprocess a source file
+order_function.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Curriculum_Design.dir\build.make CMakeFiles/Curriculum_Design.dir/order_function.cpp.i
+.PHONY : order_function.cpp.i
+
+order_function.s: order_function.cpp.s
+.PHONY : order_function.s
+
+# target to generate assembly for a file
+order_function.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Curriculum_Design.dir\build.make CMakeFiles/Curriculum_Design.dir/order_function.cpp.s
+.PHONY : order_function.cpp.s
+
 user_function.obj: user_function.cpp.obj
 .PHONY : user_function.obj
 
@@ -269,6 +293,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... order_function.obj
+	@echo ... order_function.i
+	@echo ... order_function.s
 	@echo ... user_function.obj
 	@echo ... user_function.i
 	@echo ... user_function.s

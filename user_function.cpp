@@ -114,6 +114,7 @@ void UserMenu(string username)      // 用户菜单
                 break;
             case 3:
                 cout << "个人信息" << endl;
+                PersonalInfo(user_id);
                 break;
             case 4:
                 cout << "退出登录" << endl;
@@ -198,6 +199,182 @@ void BuyerMenu(string user_id)     // 买家菜单
             default:
                 cout << "输入错误" << endl;
                 break;
+        }
+    }
+}
+
+void PersonalInfo(string user_id)    // 个人信息
+{
+    while(true)
+    {
+        system("cls");
+        cout << "==============================================================================" << endl;
+        cout << "1.查看个人信息 2.修改个人信息 3.充值 4.返回" << endl;
+        cout << "==============================================================================" << endl;
+        int option;
+        cin >> option;
+        switch (option) {
+            case 1:
+                cout << "查看个人信息" << endl;
+                ShowPersonalInfo(user_id);
+                break;
+            case 2:
+                cout << "修改个人信息" << endl;
+                ModifyPersonalInfo(user_id);
+                break;
+            case 3:
+                cout << "充值" << endl;
+                Recharge(user_id);
+                break;
+            case 4:
+                cout << "返回" << endl;
+                return;
+            default:
+                cout << "输入错误" << endl;
+                break;
+        }
+        system("pause");
+    }
+}
+
+void ShowPersonalInfo(string user_id)   // 查看个人信息
+{
+    system("cls");
+    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    {
+        if (it->id == user_id)
+        {
+            cout << "用户名：" << it->username << endl;
+            cout << "密码：" << it->password << endl;
+            cout << "地址：" << it->adderss << endl;
+            cout << "电话：" << it->phone << endl;
+            cout << "余额：" << it->balance << endl;
+            return;
+        }
+    }
+}
+
+void ModifyPersonalInfo(string user_id)     // 修改个人信息
+{
+    while (true) {
+        system("cls");
+        int option;
+        cout << "1.修改用户名 2.修改密码 3.修改地址 4.修改电话 5.返回" << endl;
+        cin >> option;
+        switch (option) {
+            case 1:
+                cout << "修改用户名" << endl;
+                ModifyUsername(user_id);
+                break;
+            case 2:
+                cout << "修改密码" << endl;
+                ModifyPassword(user_id);
+                break;
+            case 3:
+                cout << "修改地址" << endl;
+                ModifyAddress(user_id);
+                break;
+            case 4:
+                cout << "修改电话" << endl;
+                ModifyPhone(user_id);
+                break;
+            case 5:
+                cout << "返回" << endl;
+                return;
+            default:
+                cout << "输入错误" << endl;
+                break;
+        }
+        system("pause");
+    }
+}
+void ModifyUsername(string user_id)     // 修改用户名
+{
+    string username;
+    cout << "请输入新的用户名：";
+    cin >> username;
+    if (check(username))
+    {
+        cout << "用户名已存在" << endl;
+        return;
+    }
+    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    {
+        if (it->id == user_id)
+        {
+            it->username = username;
+            cout << "修改成功" << endl;
+            UpdateUser();
+            return;
+        }
+    }
+}
+
+void ModifyPassword(string user_id)     // 修改密码
+{
+    string password;
+    cout << "请输入新的密码：";
+    cin >> password;
+    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    {
+        if (it->id == user_id)
+        {
+            it->password = password;
+            cout << "修改成功" << endl;
+            UpdateUser();
+            return;
+        }
+    }
+}
+
+void ModifyAddress(string user_id)      // 修改地址
+{
+    string address;
+    cout << "请输入新的地址：";
+    cin >> address;
+    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    {
+        if (it->id == user_id)
+        {
+            it->adderss = address;
+            cout << "修改成功" << endl;
+            UpdateUser();
+            return;
+        }
+    }
+}
+
+void ModifyPhone(string user_id)        // 修改电话
+{
+    string phone;
+    cout << "请输入新的电话：";
+    cin >> phone;
+    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    {
+        if (it->id == user_id)
+        {
+            it->phone = phone;
+            cout << "修改成功" << endl;
+            UpdateUser();
+            return;
+        }
+    }
+}
+
+void Recharge(string user_id)
+{
+    system("cls");
+    int money;
+    cout << "请输入充值金额：";
+    cin >> money;
+    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    {
+        if (it->id == user_id)
+        {
+            it->balance += money;
+            cout << "充值成功" << endl;
+            UpdateUser();
+            return;
         }
     }
 }

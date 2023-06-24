@@ -20,9 +20,8 @@ void Exit();
 // admin menu function
 void AdminMenu();
 void ShowAllUser();
-void AddUser();
 void DeleteUser();
-void ModifyUser();
+
 
 
 // user menu function
@@ -30,6 +29,14 @@ void UserMenu(std::string username);
 void SellerMenu(std::string user_id);
 void BuyerMenu(std::string user_id);
 void PersonalInfo(std::string user_id);
+void ShowPersonalInfo(std::string user_id);
+void ModifyPersonalInfo(std::string user_id);
+void ModifyUsername(std::string user_id);
+void ModifyPassword(std::string user_id);
+void ModifyAddress(std::string user_id);
+void ModifyPhone(std::string user_id);
+void Recharge(std::string user_id);
+
 
 // commodity menu function
 std::string GetcurTime();

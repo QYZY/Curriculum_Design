@@ -71,16 +71,12 @@ void AdminMenu()
         int option = 0;
         cout << "请输入您的选择：";
         cin >> option;
-        while (cin.fail()) {
+        if (cin.fail()) {
             cout << "输入错误，请重新输入" << endl;
             cin.clear();
             cin.ignore(1024, '\n');
             system("pause");
-            system("cls");
-            ShowAdminMenu();
-            cout << "请输入您的选择：";
-            cin >> option;
-
+            continue;
         }
         switch (option) {
             case 1:

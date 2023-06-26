@@ -65,7 +65,7 @@ void init()     // ≥ı ºªØ
         getline(ss, str, ',');
         user.phone = str;
         getline(ss, str, ',');
-        user.balance = stoi(str);
+        user.balance = stod(str);
         v.push_back(user);
     }
     ifs1.close();

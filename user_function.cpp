@@ -103,6 +103,13 @@ void UserMenu(string username)      // 用户菜单
         cout << "======================================================" << endl;
         int option;
         cin >> option;
+        if (cin.fail()) {
+            cout << "输入错误，请重新输入" << endl;
+            cin.clear();
+            cin.ignore(1024, '\n');
+            system("pause");
+            continue;
+        }
         switch (option) {
             case 1:
                 cout << "我是买家" << endl;
@@ -138,6 +145,13 @@ void SellerMenu(string user_id)        // 卖家菜单
         cout << "==============================================================================" << endl;
         int option;
         cin >> option;
+        if (cin.fail()) {
+            cout << "输入错误，请重新输入" << endl;
+            cin.clear();
+            cin.ignore(1024, '\n');
+            system("pause");
+            continue;
+        }
         switch (option) {
             case 1:
                 cout << "商品上架" << endl;
@@ -179,6 +193,13 @@ void BuyerMenu(string user_id)     // 买家菜单
         cout << "==============================================================================" << endl;
         int option;
         cin >> option;
+        if (cin.fail()) {
+            cout << "输入错误，请重新输入" << endl;
+            cin.clear();
+            cin.ignore(1024, '\n');
+            system("pause");
+            continue;
+        }
         switch (option) {
             case 1:
                 cout << "查看商品列表" << endl;
@@ -216,6 +237,13 @@ void PersonalInfo(string user_id)    // 个人信息
         cout << "==============================================================================" << endl;
         int option;
         cin >> option;
+        if (cin.fail()) {
+            cout << "输入错误，请重新输入" << endl;
+            cin.clear();
+            cin.ignore(1024, '\n');
+            system("pause");
+            continue;
+        }
         switch (option) {
             case 1:
                 cout << "查看个人信息" << endl;
@@ -264,6 +292,13 @@ void ModifyPersonalInfo(string user_id)     // 修改个人信息
         int option;
         cout << "1.修改用户名 2.修改密码 3.修改地址 4.修改电话 5.返回" << endl;
         cin >> option;
+        if (cin.fail()) {
+            cout << "输入错误，请重新输入" << endl;
+            cin.clear();
+            cin.ignore(1024, '\n');
+            system("pause");
+            continue;
+        }
         switch (option) {
             case 1:
                 cout << "修改用户名" << endl;
@@ -315,19 +350,27 @@ void ModifyUsername(string user_id)     // 修改用户名
 
 void ModifyPassword(string user_id)     // 修改密码
 {
-    string password;
-    cout << "请输入新的密码：";
-    cin >> password;
+    string new_password,old_password;
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
         if (it->id == user_id)
         {
-            it->password = password;
+            cout << "请输入旧密码：";
+            cin >> old_password;
+            if (old_password != it->password)
+            {
+                cout << "密码错误" << endl;
+                return;
+            }
+            cout << "请输入新密码：";
+            cin >> new_password;
+            it->password = new_password;
             cout << "修改成功" << endl;
             UpdateUser();
             return;
         }
     }
+
 }
 
 void ModifyAddress(string user_id)      // 修改地址
@@ -370,6 +413,12 @@ void Recharge(string user_id)       // 充值
     int money;
     cout << "请输入充值金额：";
     cin >> money;
+    if (cin.fail()) {
+        cout << "ERROR!!" << endl;
+        cin.clear();
+        cin.ignore(1024, '\n');
+        return;
+    }
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
         if (it->id == user_id)

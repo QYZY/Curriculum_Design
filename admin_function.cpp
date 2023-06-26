@@ -89,6 +89,7 @@ void AdminMenu()
                 break;
             case 2:
                 cout << "搜索商品" << endl;
+                SearchCommodity();
                 break;
             case 3:
                 cout << "查看所有订单" << endl;
@@ -154,14 +155,7 @@ void DeleteUser()
     if (flag == 0)
         cout << "用户不存在" << endl;
 
-    ofstream ofs("../data/User.txt");
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
-    {
-        ofs << it->id << "," << it->username << "," << it->password << "," << it->adderss << "," << it->phone << "," << it->balance << endl;
-
-    }
-    ofs.close();
-
+    UpdateUser();
     return;
 }
 
@@ -171,14 +165,14 @@ void ShowAllOrder()
     cout << "=======================================================================================================" << endl;
     cout << "==                                             所有订单                                              ==" << endl;
     cout << "=======================================================================================================" << endl;
-    cout << left << setw(20) << "订单ID" << setw(20) << "商品ID" << setw(20) << "商品名称" << setw(20) << "商品价格" << setw(10) << "买家ID" << setw(10) << "卖家ID" << setw(20) << "订单时间" << endl;
+    cout << left << setw(15) << "订单ID" << setw(15) << "商品ID" << setw(20) << "商品名称" << setw(10) << "商品价格" << setw(10) << "买家ID" << setw(10) << "卖家ID" << setw(20) << "订单时间" << endl;
     for (vector<Order>::iterator it = v2.begin(); it != v2.end(); it++)
     {
         for (vector<Commodity>::iterator it1 = v1.begin(); it1 != v1.end(); it1++)
         {
             if (it->commodity_id == it1->id)
             {
-                cout << left << setw(20) << it->order_id << setw(20) << it->commodity_id << setw(20) << it1->name << setw(20) << it->price << setw(10) << it->buyer << setw(10) << it->seller << setw(20) << it->order_time << endl;
+                cout << left << setw(15) << it->order_id << setw(15) << it->commodity_id << setw(20) << it1->name << setw(10) << it->price << setw(10) << it->buyer << setw(10) << it->seller << setw(20) << it->order_time << endl;
             }
         }
     }
@@ -217,7 +211,7 @@ void DeleteCommodity()       // 下架商品
             return;
         }
     }
-    cout << "商品不存在或您无权操作" << endl;
+    cout << "商品不存在" << endl;
     return;
 
 }

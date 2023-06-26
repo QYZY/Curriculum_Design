@@ -39,6 +39,7 @@ void ModifyPassword(std::string user_id);
 void ModifyAddress(std::string user_id);
 void ModifyPhone(std::string user_id);
 void Recharge(std::string user_id);
+void SearchCommodity();
 
 
 // commodity menu function

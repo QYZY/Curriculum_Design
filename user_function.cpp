@@ -190,6 +190,7 @@ void BuyerMenu(string user_id)     // 买家菜单
                 break;
             case 3:
                 cout << "搜索商品" << endl;
+                SearchCommodity();
                 break;
             case 4:
                 cout << "查看历史订单" << endl;

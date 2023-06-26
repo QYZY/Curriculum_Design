@@ -207,3 +207,21 @@ void BuyCommodity(string user_id)      // 购买商品
     system("pause");
     return;
 }
+
+void SearchCommodity()      // 搜索商品
+{
+    system("cls");
+    string name;
+    cout << "请输入要搜索的商品名称：";
+    cin >> name;
+    cout << left << setw(10) << "商品id" << setw(10) << "商品名称" << setw(10) << "商品价格" << setw(20) << "发布时间"  << setw(10) << "商品状态" << endl;
+    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    {
+        if (it->name == name)
+        {
+            cout << left << setw(10) << it->id << setw(10) << it->name << setw(10) << it->price << setw(20) << it->added_time << setw(10) << it->status << endl;
+        }
+    }
+    system("pause");
+    return;
+}

@@ -14,7 +14,7 @@ struct User     // 用户信息
     string id;
     string username;
     string password;
-    string adderss;
+    string address;
     string phone;
     double balance;
 };

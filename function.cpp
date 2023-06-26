@@ -61,7 +61,7 @@ void init()     // 初始化
         getline(ss, str, ',');
         user.password = str;
         getline(ss, str, ',');
-        user.adderss = str;
+        user.address = str;
         getline(ss, str, ',');
         user.phone = str;
         getline(ss, str, ',');
@@ -196,7 +196,7 @@ void UpdateUser()       // 更新usr.txt
     }
     for (int i = 0; i < v.size(); ++i)
     {
-        ofs << v[i].id << "," << v[i].username << "," << v[i].password << "," << v[i].adderss << "," << v[i].phone << "," << v[i].balance << endl;
+        ofs << v[i].id << "," << v[i].username << "," << v[i].password << "," << v[i].address << "," << v[i].phone << "," << v[i].balance << endl;
     }
     ofs.close();
 }

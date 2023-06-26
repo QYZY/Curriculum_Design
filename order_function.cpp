@@ -5,6 +5,7 @@
 # include <string>
 # include <fstream>
 # include <vector>
+# include <iomanip>
 # include <algorithm>
 # include "menu.h"
 # include "config.h"
@@ -24,7 +25,7 @@ void ShowMyBuyOrder(string user_id)
     cout << "=======================================================================================================" << endl;
     cout << "==                                             我的购买订单                                          ==" << endl;
     cout << "=======================================================================================================" << endl;
-    cout <<"订单编号\t商品编号\t商品名称\t商品价格\t卖家\t\t订单时间" << endl;
+    cout << left << setw(15) << "订单编号" << setw(15) << "商品编号" << setw(20) << "商品名称" << setw(15) << "商品价格" << setw(15) << "卖家" << setw(20) << "订单时间" << endl;
     for (vector<Order>::iterator it = v2.begin(); it != v2.end(); it++)
     {
         if (it->buyer == user_id)
@@ -33,13 +34,12 @@ void ShowMyBuyOrder(string user_id)
             {
                 if (it->commodity_id == it1->id)
                 {
-                    cout << it->order_id << "\t\t" << it->commodity_id << "\t\t" << it1->name << "\t\t" << it->price << "\t\t" << it->seller << "\t\t" << it->order_time << endl;
+                    cout << left << setw(15) << it->order_id << setw(15) << it->commodity_id << setw(20) << it1->name << setw(15) << it->price << setw(15) << it->seller << setw(20) << it->order_time << endl;
                 }
             }
         }
     }
     cout << "=======================================================================================================" << endl;
-    system("pause");
     return;
 
 }
@@ -50,7 +50,7 @@ void ShowMySellOrder(string user_id)
     cout << "=======================================================================================================" << endl;
     cout << "==                                             我的出售订单                                          ==" << endl;
     cout << "=======================================================================================================" << endl;
-    cout << "订单编号\t商品编号\t商品名称\t商品价格\t买家\t\t订单时间" << endl;
+    cout << left << setw(15) << "订单编号" << setw(15) << "商品编号" << setw(20) << "商品名称" << setw(15) << "商品价格" << setw(15) << "买家" << setw(20) << "订单时间" << endl;
     for (vector<Order>::iterator it = v2.begin(); it != v2.end(); it++)
     {
         if (it->seller == user_id)
@@ -59,13 +59,12 @@ void ShowMySellOrder(string user_id)
             {
                 if (it->commodity_id == it1->id)
                 {
-                    cout << it->order_id << "\t\t" << it->commodity_id << "\t\t" << it1->name << "\t\t" << it->price << "\t\t" << it->buyer << "\t\t" << it->order_time << endl;
+                    cout << left << setw(15) << it->order_id << setw(15) << it->commodity_id << setw(20) << it1->name << setw(15) << it->price << setw(15) << it->buyer << setw(20) << it->order_time << endl;
                 }
             }
         }
     }
     cout << "=======================================================================================================" << endl;
-    system("pause");
     return;
 }
 

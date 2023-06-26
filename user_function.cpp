@@ -4,6 +4,7 @@
 # include <iostream>
 # include <string>
 # include <fstream>
+# include <iomanip>
 # include <algorithm>
 # include "menu.h"
 # include "config.h"
@@ -21,6 +22,7 @@ extern vector<Order> v2;   // 订单信息
 
 int check(string username)      // 检查用户名是否存在
 {
+
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
         if (it->username == username)
@@ -34,7 +36,7 @@ void Register()     // 用户注册
     system("cls");
     User user;
     user.id= 'U' + to_string(U_id);
-    user.adderss = "";
+    user.address = "";
     user.phone = "";
     user.balance = 0;
     cout << "请输入您的用户名：";
@@ -68,12 +70,10 @@ void Login()        // 用户登录
     cin >> username;
     cout << "请输入您的密码：";
     cin >> passwd;
-    int flag = 0;
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
         if (it->username == username && it->password == passwd)
         {
-            flag = 1;
             cout << "登录成功" << endl;
             cout << "欢迎您，" << username << endl;
             UserMenu(username);
@@ -98,9 +98,9 @@ void UserMenu(string username)      // 用户菜单
     }
     while(true) {
         system("cls");
-        cout << "======================================================" << endl;
-        cout << "1.我是买家  2.我是卖家  3.个人信息  4.退出登录" << endl;
-        cout << "======================================================" << endl;
+        cout << "===================================================" << endl;
+        cout << "  1.我是买家  2.我是卖家  3.个人信息  4.退出登录" << endl;
+        cout << "===================================================" << endl;
         int option;
         cin >> option;
         if (cin.fail()) {
@@ -140,9 +140,9 @@ void SellerMenu(string user_id)        // 卖家菜单
 {
     while(true) {
         system("cls");
-        cout << "==============================================================================" << endl;
-        cout << "1.商品上架  2.查看发布商品  3.修改商品信息  4.商品下架  5.查看历史订单  6. 返回" << endl;
-        cout << "==============================================================================" << endl;
+        cout << "====================================================================================" << endl;
+        cout << "  1.商品上架  2.查看发布商品  3.修改商品信息  4.商品下架  5.查看历史订单  6. 返回" << endl;
+        cout << "====================================================================================" << endl;
         int option;
         cin >> option;
         if (cin.fail()) {
@@ -180,6 +180,7 @@ void SellerMenu(string user_id)        // 卖家菜单
                 cout << "输入错误" << endl;
                 break;
         }
+        system("pause");
     }
 }
 
@@ -188,9 +189,9 @@ void BuyerMenu(string user_id)     // 买家菜单
     while(true)
     {
         system("cls");
-        cout << "==============================================================================" << endl;
-        cout << "1.查看商品列表 2.购买商品 3.搜索商品 4.查看历史订单 5.返回" << endl;
-        cout << "==============================================================================" << endl;
+        cout << "=======================================================================" << endl;
+        cout << "   1.查看商品列表  2.购买商品  3.搜索商品  4.查看历史订单  5.返回" << endl;
+        cout << "=======================================================================" << endl;
         int option;
         cin >> option;
         if (cin.fail()) {
@@ -202,19 +203,15 @@ void BuyerMenu(string user_id)     // 买家菜单
         }
         switch (option) {
             case 1:
-                cout << "查看商品列表" << endl;
                 ShowBuyCommodity(user_id);
                 break;
             case 2:
-                cout << "购买商品" << endl;
                 BuyCommodity(user_id);
                 break;
             case 3:
-                cout << "搜索商品" << endl;
                 SearchCommodity();
                 break;
             case 4:
-                cout << "查看历史订单" << endl;
                 ShowMyBuyOrder(user_id);
                 break;
             case 5:
@@ -224,6 +221,7 @@ void BuyerMenu(string user_id)     // 买家菜单
                 cout << "输入错误" << endl;
                 break;
         }
+        system("pause");
     }
 }
 
@@ -232,9 +230,9 @@ void PersonalInfo(string user_id)    // 个人信息
     while(true)
     {
         system("cls");
-        cout << "==============================================================================" << endl;
-        cout << "1.查看个人信息 2.修改个人信息 3.充值 4.返回" << endl;
-        cout << "==============================================================================" << endl;
+        cout << "=========================================================" << endl;
+        cout << "    1.查看个人信息  2.修改个人信息  3.充值  4.返回" << endl;
+        cout << "=========================================================" << endl;
         int option;
         cin >> option;
         if (cin.fail()) {
@@ -275,11 +273,13 @@ void ShowPersonalInfo(string user_id)   // 查看个人信息
     {
         if (it->id == user_id)
         {
-            cout << "用户名：" << it->username << endl;
-            cout << "密码：" << it->password << endl;
-            cout << "地址：" << it->adderss << endl;
-            cout << "电话：" << it->phone << endl;
-            cout << "余额：" << it->balance << endl;
+            cout << endl;
+            cout << "***************个人信息***************" << endl;
+            cout << left << setw(10) << "用户名：" << it->username << endl;
+            cout << left << setw(10) << "地址：" << it->address << endl;
+            cout << left << setw(10) << "电话：" << it->phone << endl;
+            cout << left << setw(10) << "余额：" << it->balance << endl;
+            cout << "**************************************" << endl;
             return;
         }
     }
@@ -289,6 +289,7 @@ void ModifyPersonalInfo(string user_id)     // 修改个人信息
 {
     while (true) {
         system("cls");
+        ShowPersonalInfo(user_id);
         int option;
         cout << "1.修改用户名 2.修改密码 3.修改地址 4.修改电话 5.返回" << endl;
         cin >> option;
@@ -317,7 +318,7 @@ void ModifyPersonalInfo(string user_id)     // 修改个人信息
                 ModifyPhone(user_id);
                 break;
             case 5:
-                cout << "返回" << endl;
+                cout << "修改成功" << endl;
                 return;
             default:
                 cout << "输入错误" << endl;
@@ -382,7 +383,7 @@ void ModifyAddress(string user_id)      // 修改地址
     {
         if (it->id == user_id)
         {
-            it->adderss = address;
+            it->address = address;
             cout << "修改成功" << endl;
             UpdateUser();
             return;

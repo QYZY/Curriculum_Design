@@ -125,8 +125,9 @@ void ShowAllUser()      // 显示所有用户信息
     cout << left << setw(15) << "用户ID" << setw(15) << "用户名" << setw(15) << "密码" <<setw(20) << "用户地址" << setw(20) << "用户电话" << setw(15) << "余额" << endl;
     for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
     {
-        cout << left << setw(15) << it->id << setw(15) << it->username << setw(15) << it->password << setw(20) << it->adderss << setw(20) << it->phone << setw(15) << it->balance << endl;
+        cout << left << setw(15) << it->id << setw(15) << it->username << setw(15) << it->password << setw(20) << it->address << setw(20) << it->phone << setw(15) << it->balance << endl;
     }
+    cout << "==================================================================================================" << endl;
     return;
 }
 

@@ -34,7 +34,7 @@ void ShowMyBuyOrder(string user_id)
             {
                 if (it->commodity_id == it1->id)
                 {
-                    cout << left << setw(15) << it->order_id << setw(15) << it->commodity_id << setw(20) << it1->name << setw(15) << it->price << setw(15) << it->seller << setw(20) << it->order_time << endl;
+                    cout << left << setw(15) << it->order_id << setw(15) << it->commodity_id << setw(20) << it1->name << setw(15) << fixed << setprecision(2) << it->price << setw(15) << it->seller << setw(20) << it->order_time << endl;
                 }
             }
         }
@@ -59,7 +59,7 @@ void ShowMySellOrder(string user_id)
             {
                 if (it->commodity_id == it1->id)
                 {
-                    cout << left << setw(15) << it->order_id << setw(15) << it->commodity_id << setw(20) << it1->name << setw(15) << it->price << setw(15) << it->buyer << setw(20) << it->order_time << endl;
+                    cout << left << setw(15) << it->order_id << setw(15) << it->commodity_id << setw(20) << it1->name << setw(15) << fixed << setprecision(2) <<it->price << setw(15) << it->buyer << setw(20) << it->order_time << endl;
                 }
             }
         }

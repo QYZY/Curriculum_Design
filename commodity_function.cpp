@@ -65,7 +65,7 @@ void ShowMyCommodity(string user_id)       // 查看我的商品
     {
         if (it->seller == user_id)
         {
-            cout << left << setw(10) << it->id << setw(10) << it->name << setw(10) << it->price << setw(20) << it->added_time << setw(10) << it->status << endl;
+            cout << left << setw(10) << it->id << setw(10) << it->name << setw(10) << fixed << setprecision(2) << it->price << setw(20) << it->added_time << setw(10) << it->status << endl;
         }
     }
     cout << "=======================================================================================================" << endl;
@@ -89,7 +89,7 @@ void ModifyCommodity(string user_id)       // 修改商品信息
                 cout << "**************商品信息**************" << endl;
                 cout << left << setw(20) << "商品id：" << setw(20) << it->id << endl;
                 cout << left << setw(20) << "商品名称：" << setw(20) << it->name << endl;
-                cout << left << setw(20) << "商品价格：" << setw(20) << it->price << endl;
+                cout << left << setw(20) << "商品价格：" << setw(20) << fixed << setprecision(2) << it->price << endl;
                 cout << left << setw(20) << "商品描述：" << setw(20) << it->description << endl;
                 cout << "************************************" << endl;
                 cout << "请输入要修改的信息：1.商品名称 2.商品价格 3.商品描述 4.退出" << endl;
@@ -161,12 +161,12 @@ void ShowBuyCommodity(string user_id)      // 查看可购买商品
     system("cls");
     cout << endl;
     cout << "========================可购买商品========================" << endl;
-    cout << left << setw(10) << "商品id" << setw(10) << "商品名称" << setw(10) << "商品价格" << setw(20) << "发布时间"  << setw(10) << "商品状态" << endl;
+    cout << left << setw(10) << "商品id" << setw(10) << "商品名称" << setw(10)   << "商品价格" << setw(20) << "发布时间"  << setw(10) << "商品状态" << endl;
     for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
     {
         if (it->status == "在售" && it->seller != user_id)
         {
-            cout << left << setw(10) << it->id << setw(10) << it->name << setw(10) << it->price << setw(20) << it->added_time << setw(10) << it->status << endl;
+            cout << left << setw(10) << it->id << setw(10) << it->name << setw(10) << fixed << setprecision(2)<< it->price << setw(20) << it->added_time << setw(10) << it->status << endl;
         }
     }
     cout << "===========================================================" << endl;
@@ -249,7 +249,7 @@ void SearchCommodity()      // 搜索商品
             cout << endl;
             cout << "**************商品信息**************" << endl;
             cout << left << setw(10) <<"名称" << setw(10) << it -> name << endl;
-            cout << left << setw(10) <<"价格" << setw(10) << it -> price << endl;
+            cout << left << setw(10) <<"价格" << setw(10) << fixed << setprecision(2) <<it -> price << endl;
             cout << left << setw(10) <<"描述" << setw(10) << it -> description << endl;
             cout << left << setw(10) <<"发布时间" << setw(10) << it -> added_time << endl;
             cout << left << setw(10) <<"状态" << setw(10) << it -> status << endl;

@@ -278,7 +278,7 @@ void ShowPersonalInfo(string user_id)   // 查看个人信息
             cout << left << setw(10) << "用户名：" << it->username << endl;
             cout << left << setw(10) << "地址：" << it->address << endl;
             cout << left << setw(10) << "电话：" << it->phone << endl;
-            cout << left << setw(10) << "余额：" << it->balance << endl;
+            cout << left << setw(10) << fixed << setprecision(2) << "余额：" << it->balance << endl;
             cout << "**************************************" << endl;
             return;
         }
@@ -411,7 +411,7 @@ void ModifyPhone(string user_id)        // 修改电话
 void Recharge(string user_id)       // 充值
 {
     system("cls");
-    int money;
+    double money;
     cout << "请输入充值金额：";
     cin >> money;
     if (cin.fail()) {

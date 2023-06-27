@@ -244,7 +244,7 @@ void SearchCommodity()      // 搜索商品
 
     for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
     {
-        if (it->name == name)
+        if ( (it->name).find(name) != string::npos )
         {
             cout << endl;
             cout << "**************商品信息**************" << endl;

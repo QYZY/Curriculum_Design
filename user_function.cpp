@@ -23,7 +23,7 @@ extern vector<Order> v2;   // 订单信息
 int check(string username)      // 检查用户名是否存在
 {
 
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    for (auto it = v.begin(); it != v.end(); it++)
     {
         if (it->username == username)
             return 1;
@@ -70,7 +70,7 @@ void Login()        // 用户登录
     cin >> username;
     cout << "请输入您的密码：";
     cin >> passwd;
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    for (auto it = v.begin(); it != v.end(); it++)
     {
         if (it->username == username && it->password == passwd)
         {
@@ -88,7 +88,7 @@ void Login()        // 用户登录
 void UserMenu(string username)      // 用户菜单
 {
     string user_id;
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    for (auto it = v.begin(); it != v.end(); it++)
     {
         if (it->username == username)
         {
@@ -269,7 +269,7 @@ void PersonalInfo(string user_id)    // 个人信息
 void ShowPersonalInfo(string user_id)   // 查看个人信息
 {
     system("cls");
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    for (auto it = v.begin(); it != v.end(); it++)
     {
         if (it->id == user_id)
         {
@@ -337,7 +337,7 @@ void ModifyUsername(string user_id)     // 修改用户名
         cout << "用户名已存在" << endl;
         return;
     }
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    for (auto it = v.begin(); it != v.end(); it++)
     {
         if (it->id == user_id)
         {
@@ -352,7 +352,7 @@ void ModifyUsername(string user_id)     // 修改用户名
 void ModifyPassword(string user_id)     // 修改密码
 {
     string new_password,old_password;
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    for (auto it = v.begin(); it != v.end(); it++)
     {
         if (it->id == user_id)
         {
@@ -379,7 +379,7 @@ void ModifyAddress(string user_id)      // 修改地址
     string address;
     cout << "请输入新的地址：";
     cin >> address;
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    for (auto it = v.begin(); it != v.end(); it++)
     {
         if (it->id == user_id)
         {
@@ -396,7 +396,7 @@ void ModifyPhone(string user_id)        // 修改电话
     string phone;
     cout << "请输入新的电话：";
     cin >> phone;
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    for (auto it = v.begin(); it != v.end(); it++)
     {
         if (it->id == user_id)
         {
@@ -420,7 +420,7 @@ void Recharge(string user_id)       // 充值
         cin.ignore(1024, '\n');
         return;
     }
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    for (auto it = v.begin(); it != v.end(); it++)
     {
         if (it->id == user_id)
         {

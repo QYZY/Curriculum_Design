@@ -61,7 +61,7 @@ void ShowMyCommodity(string user_id)       // 查看我的商品
     cout << endl;
     cout << "=======================================================================================================" << endl;
     cout << left << setw(10) << "商品id" << setw(10) << "商品名称" << setw(10) << "商品价格" << setw(20) << "发布时间"  << setw(10) << "商品状态" << endl;
-    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    for (auto it = v1.begin(); it != v1.end(); it++)
     {
         if (it->seller == user_id)
         {
@@ -78,7 +78,7 @@ void ModifyCommodity(string user_id)       // 修改商品信息
     string id;
     cout << "请输入要修改的商品id：";
     cin >> id;
-    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    for (auto it = v1.begin(); it != v1.end(); it++)
     {
         if (it->id == id && it->seller == user_id)
         {
@@ -141,7 +141,7 @@ system("cls");
     string id;
     cout << "请输入要下架的商品id：";
     cin >> id;
-    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    for (auto it = v1.begin(); it != v1.end(); it++)
     {
         if (it->id == id && it->seller == user_id)
         {
@@ -162,7 +162,7 @@ void ShowBuyCommodity(string user_id)      // 查看可购买商品
     cout << endl;
     cout << "========================可购买商品========================" << endl;
     cout << left << setw(10) << "商品id" << setw(10) << "商品名称" << setw(10)   << "商品价格" << setw(20) << "发布时间"  << setw(10) << "商品状态" << endl;
-    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    for (auto it = v1.begin(); it != v1.end(); it++)
     {
         if (it->status == "在售" && it->seller != user_id)
         {
@@ -179,12 +179,12 @@ void BuyCommodity(string user_id)      // 购买商品
     string id;
     cout << "请输入要购买的商品id：";
     cin >> id;
-    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    for (auto it = v1.begin(); it != v1.end(); it++)
     {
         if (it->id == id && it->status == "在售" && it->seller != user_id)
         {
             // 支付
-            for (vector<User>::iterator it1 = v.begin(); it1 != v.end(); it1++)
+            for (auto it1 = v.begin(); it1 != v.end(); it1++)
             {
                 if (it1->id == user_id)
                 {
@@ -195,7 +195,7 @@ void BuyCommodity(string user_id)      // 购买商品
                     }
                     else
                     {
-                        for(vector<User>::iterator it2 = v.begin(); it2 != v.end(); it2++)
+                        for(auto it2 = v.begin(); it2 != v.end(); it2++)
                         {
                             if (it2->id == it->seller)
                             {
@@ -242,7 +242,7 @@ void SearchCommodity()      // 搜索商品
     cout << "请输入要搜索的商品名称：";
     cin >> name;
 
-    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    for (auto it = v1.begin(); it != v1.end(); it++)
     {
         if ( (it->name).find(name) != string::npos )
         {

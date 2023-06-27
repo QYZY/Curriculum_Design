@@ -123,7 +123,7 @@ void ShowAllUser()      // 显示所有用户信息
     cout << "==                                        所有用户信息                                          ==" << endl;
     cout << "==================================================================================================" << endl;
     cout << left << setw(15) << "用户ID" << setw(15) << "用户名" << setw(15) << "密码" <<setw(20) << "用户地址" << setw(20) << "用户电话" << setw(15) << "余额" << endl;
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    for (auto it = v.begin(); it != v.end(); it++)
     {
         cout << left << setw(15) << it->id << setw(15) << it->username << setw(15) << it->password << setw(20) << it->address << setw(20) << it->phone << setw(15) << it->balance << endl;
     }
@@ -139,7 +139,7 @@ void DeleteUser()
     string del_id;
     cin >> del_id;
     int flag = 0;
-    for (vector<User>::iterator it = v.begin(); it != v.end(); it++)
+    for (auto it = v.begin(); it != v.end(); it++)
     {
 
         if (it->id == del_id)
@@ -163,9 +163,9 @@ void ShowAllOrder()
     cout << "==                                             所有订单                                              ==" << endl;
     cout << "=======================================================================================================" << endl;
     cout << left << setw(15) << "订单ID" << setw(15) << "商品ID" << setw(20) << "商品名称" << setw(10) << "商品价格" << setw(10) << "买家ID" << setw(10) << "卖家ID" << setw(20) << "订单时间" << endl;
-    for (vector<Order>::iterator it = v2.begin(); it != v2.end(); it++)
+    for (auto it = v2.begin(); it != v2.end(); it++)
     {
-        for (vector<Commodity>::iterator it1 = v1.begin(); it1 != v1.end(); it1++)
+        for (auto it1 = v1.begin(); it1 != v1.end(); it1++)
         {
             if (it->commodity_id == it1->id)
             {
@@ -184,7 +184,7 @@ void ShowAllCommodity()
     cout << "==                                             所有商品                                              ==" << endl;
     cout << "=======================================================================================================" << endl;
     cout << left << setw(20) << "商品id" << setw(20) << "商品名称" << setw(20) << "商品价格" << setw(30) << "发布时间"  << setw(20) << "商品状态" << endl;
-    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    for (auto it = v1.begin(); it != v1.end(); it++)
     {
         cout << left << setw(20) << it->id << setw(20) << it->name << setw(20) << it->price << setw(30) << it->added_time << setw(20) << it->status << endl;
     }
@@ -198,7 +198,7 @@ void DeleteCommodity()       // 下架商品
     string id;
     cout << "请输入要下架的商品id：";
     cin >> id;
-    for (vector<Commodity>::iterator it = v1.begin(); it != v1.end(); it++)
+    for (auto it = v1.begin(); it != v1.end(); it++)
     {
         if (it->id == id)
         {

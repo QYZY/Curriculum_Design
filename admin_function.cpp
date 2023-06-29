@@ -131,6 +131,20 @@ void ShowAllUser()      // 显示所有用户信息
     return;
 }
 
+void RemoveUserCommodity(string id)     // 删除用户的商品
+{
+    for (auto it = v1.begin(); it != v1.end(); it++)
+    {
+        if (it->seller == id)
+        {
+            it->status = "已下架";
+            UpdateCommodity();
+            return;
+        }
+    }
+    return;
+}
+
 void DeleteUser()
 {
     system("cls");
@@ -147,6 +161,8 @@ void DeleteUser()
             flag = 1;
             cout << "删除成功" << endl;
             v.erase(it);
+            RemoveUserCommodity(del_id);
+            break;
         }
     }
     if (flag == 0)

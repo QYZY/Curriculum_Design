@@ -21,6 +21,7 @@ void Exit();
 void AdminMenu();
 void ShowAllUser();
 void DeleteUser();
+void RemoveUserCommodity();
 void ShowAllCommodity();
 void ShowAllOrder();
 void DeleteCommodity();

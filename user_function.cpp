@@ -275,6 +275,7 @@ void ShowPersonalInfo(string user_id)   // 查看个人信息
         {
             cout << endl;
             cout << "***************个人信息***************" << endl;
+            cout << left << setw(10) << "用户ID：" << it->id << endl;
             cout << left << setw(10) << "用户名：" << it->username << endl;
             cout << left << setw(10) << "地址：" << it->address << endl;
             cout << left << setw(10) << "电话：" << it->phone << endl;
